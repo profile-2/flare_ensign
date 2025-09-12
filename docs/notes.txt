@@ -1,0 +1,158 @@
+
+https://www.youtube.com/watch?v=9_aJGUTePYo
+
+Funciones de layers.
+void SetDrawTarget(uint8_t layer, bool bDirty = true);
+		void EnableLayer(uint8_t layer, bool b);
+		void SetLayerOffset(uint8_t layer, const olc::vf2d& offset); <- layer offset funciona de manera extraña, recibe coordenadas de manera normalizada
+		void SetLayerOffset(uint8_t layer, float x, float y);
+		void SetLayerScale(uint8_t layer, const olc::vf2d& scale);
+		void SetLayerScale(uint8_t layer, float x, float y);
+		void SetLayerTint(uint8_t layer, const olc::Pixel& tint);
+		void SetLayerCustomRenderFunction(uint8_t layer, std::function<void()> f);
+
+		std::vector<LayerDesc>& GetLayers();
+		uint32_t CreateLayer();
+
+
+vi2d.mag2() = x*x + y*y => si las celdas son vecinas mag2 = 1, si hay una de por medio mag2 = 4
+
+
+Ejemplo de uso de nlohmann/json
+    // try{
+    //     std::ifstream file("assets/data_files/unit_5.json");
+    //     if(!file.is_open()) throw std::runtime_error("Failed to open file");
+
+    //     nlohmann::json data;
+    //     file >> data;
+
+    //     std::string name = data.at("name").get<std::string>();
+    //     int level = data.at("level").get<int>();
+    //     std::vector<int> stats = data.at("stats").get<std::vector<int>>();
+
+    //     std::cout << name << " "  << level << " "; for(int s: stats) std::cout  << s  << " "; std::cout << "\n";
+
+    // } catch (const nlohmann::json::exception& e){
+    //     std::cerr  << "JSON parsing error: " << e.what()  << "\n";
+    //     return 1;
+    // } catch (const std::exception& e){
+    //     std::cerr  << "STD error: " << e.what()  << "\n";
+    //     return 1;
+    // }
+
+Ejemplo iterando
+    try {
+        // Iterate over JSON files in directory
+        for (const auto& entry : fs::directory_iterator("assets/data_files")) {
+            if (entry.path().extension() == ".json") {
+                std::ifstream file(entry.path());
+                if (!file.is_open()) {
+                    std::cerr << "Failed to open " << entry.path() << "\n";
+                    continue;
+                }
+
+                // Parse JSON
+                json data;
+                file >> data;
+
+                // Access fields
+                std::string name = data.at("name").get<std::string>();
+                int level = data.at("level").get<int>();
+                std::vector<int> stats = data.at("stats").get<std::vector<int>>();
+
+                // Print
+                std::cout << "File: " << entry.path() << "\n";
+                std::cout << "Name: " << name << "\n";
+                std::cout << "Level: " << level << "\n";
+                std::cout << "Stats: ";
+                for (int stat : stats) {
+                    std::cout << stat << " ";
+                }
+                std::cout << "\n\n";
+            }
+        }
+    } catch (const json::exception& e) {
+        std::cerr << "JSON parsing error: " << e.what() << "\n";
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << "\n";
+        return 1;
+    }
+
+Codigo para leer un JSON con schema units_schema.json
+    struct Unit {
+        std::string name;
+        int level;
+        std::vector<int> stats;
+
+        explicit Unit(const nlohmann::json& data) {
+            name = data.at("name").get<std::string>();
+            level = data.at("level").get<int>();
+            stats = data.value("stats", std::vector<int>{}); // Default to empty if missing
+        }
+    };
+
+    int main(){
+        try {
+            // Open the JSON file
+            std::ifstream file("assets/data_files/units/units_a.json");
+            if (!file.is_open()) {
+                throw std::runtime_error("Failed to open units.json");
+            }
+
+            // Parse JSON
+            nlohmann::json data;
+            file >> data;
+
+            // Store units
+            std::vector<Unit> units;
+            for (const auto& item : data.at("units")) {
+                units.emplace_back(item);
+            }
+
+            // Print units
+            for (size_t i = 0; i < units.size(); ++i) {
+                const auto& unit = units[i];
+                std::cout << "Unit " << i + 1 << ":\n";
+                std::cout << "  Name: " << unit.name << "\n";
+                std::cout << "  Level: " << unit.level << "\n";
+                std::cout << "  Stats: ";
+                for (int stat : unit.stats) {
+                    std::cout << stat << " ";
+                }
+                std::cout << "\n\n";
+            }
+
+        } catch (const nlohmann::json::exception& e) {
+            std::cerr << "JSON error: " << e.what() << "\n";
+            return 1;
+        } catch (const std::exception& e) {
+            std::cerr << "Error: " << e.what() << "\n";
+            return 1;
+        }
+        ...
+    }
+
+
+
+Ejemplo de uso de magic_enum.hpp (https://github.com/TheOpenArchive/magic_enum/blob/master/include/magic_enum/magic_enum.hpp)
+    enum class eJob {FIGHTER, ROGUE, MAGE};
+
+    std::string job = "FIGHTER";
+    auto jobIndex = magic_enum::enum_cast<eJob>(job);
+
+    p2util::Echo(std::to_string((int)(jobIndex.value())));
+    // crashea con error cuando el string the job no es una etiqueta del enum. Error: terminate called after throwing an instance of 'std::bad_optional_access'
+
+Ejemplo usando map instead
+    const std::map<std::string, int> mJob = {
+        {"FIGHTER", 0},
+        {"ROGUE",1},
+        {"MAGE",2}
+    };
+
+    std::string job = "ARCHER";
+
+    p2util::Echo(std::to_string(mJob.at(job)));
+    // tambien crashea buscando un valor invalido. Error: terminate called after throwing an instance of 'std::out_of_range' 
+

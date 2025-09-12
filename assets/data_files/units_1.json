@@ -1,0 +1,60 @@
+{
+    "units": [
+        {
+            "name": "Rognvaldsson",
+            "job":"FIGHTER",
+            "level": 1,
+            "faction": 0,
+            "pos_x": 13,
+            "pos_y": 6
+        },
+        {
+            "name": "Aakesson",
+            "job": "FIGHTER",
+            "level": 1,
+            "faction": 1,
+            "pos_x": 15,
+            "pos_y": 6
+        },
+        {
+            "name": "Halvorsen",
+            "job": "FIGHTER",
+            "level": 1,
+            "faction": 0,
+            "pos_x": 15,
+            "pos_y": 7
+        },
+        {
+            "name": "Mikkelsen",
+            "job": "ROGUE",
+            "level": 1,
+            "faction": 0,
+            "pos_x": 13,
+            "pos_y": 9
+        },
+        {
+            "name": "Svendsson",
+            "job": "MAGE",
+            "level": 1,
+            "faction": 0,
+            "pos_x": 15,
+            "pos_y": 9
+        },
+        {
+            "name": "Yngvildsen",
+            "job": "ROGUE",
+            "level": 1,
+            "faction": 1,
+            "pos_x": 15,
+            "pos_y": 10
+        },
+        {
+            "name": "Dahlgren",
+            "job": "MAGE",
+            "level": 1,
+            "faction": 1,
+            "pos_x": 17,
+            "pos_y": 10
+        }
+    ]
+}

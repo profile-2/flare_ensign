@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "type":"object",
+    "properties": {
+        "units":{
+            "type":"array", 
+            "items": {
+                "type": "object",
+                "properties":{
+                    "name": {"type": "string"},
+                    "job": {"type": "string", "enum": ["FIGHTER","ROGUE","MAGE"]},
+                    "level": {"type": "integer", "minimum": 1, "maximum": 10},
+                    "faction": {"type":"integer"},
+                    "pos_x":{"type":"integer"},
+                    "pos_y":{"type":"integer"}
+                },
+                "required":["name","job","faction","pos_x","pos_y"]
+            }
+        }
+    },
+    "required": ["units"]
+    
+}

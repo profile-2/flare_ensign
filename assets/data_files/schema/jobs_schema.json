@@ -1,0 +1,58 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "type":"object",
+    "properties": {
+        "jobs":{
+            "type":"array", 
+            "items": {
+                "type": "object",
+                "properties":{
+                    "name":{"type":"string"},
+                    "sprite_path": {"type":"string"},
+                    "grid_size_x": {"type":"integer"},
+                    "grid_size_y": {"type":"integer"},
+                    "cell_size_x": {"type":"integer"},
+                    "cell_size_y": {"type":"integer"},
+                    "offset_x": {"type":"integer"},
+                    "offset_y": {"type":"integer"},
+                    "anim_desc": {
+                        "type":"array",
+                        "items":{
+                            "type":"object",
+                            "properties": {
+                                "times":{"type":"array", "items": {"type":"number"}},
+                                "flag":{"type":"integer"}
+                            }
+                        }
+                    },
+                    "movement":{"type":"integer"},
+                    "mobility_type":{"type":"integer"},
+                    "hp":{"type":"integer"},
+                    "attack_type":{"type":"integer"},
+                    "str":{"type":"integer"},
+                    "dex":{"type":"integer"},
+                    "int":{"type":"integer"},
+                    "spr":{"type":"integer"}
+                },
+                "required":[
+                    "sprite_path",
+                    "grid_size_x",
+                    "grid_size_y",
+                    "cell_size_x",
+                    "cell_size_y",
+                    "anim_desc",
+                    "movement",
+                    "mobility_type",
+                    "attack_type",
+                    "hp",
+                    "str",
+                    "dex",
+                    "int",
+                    "spr"
+                ]
+            }
+        }
+    
+    },
+    "required": []
+}

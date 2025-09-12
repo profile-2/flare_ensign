@@ -1,0 +1,100 @@
+{
+    "jobs": [
+        {
+            "name": "FIGHTER",
+            "sprite_path": "./assets/unit_fighter.png",
+            "grid_size_x": 4,
+            "grid_size_y": 3,
+            "cell_size_x": 31,
+            "cell_size_y": 31,
+            "offset_x": -6,
+            "offset_y": -13,
+            "anim_desc": [
+                {
+                    "times": [0.2,0.2,0.2],
+                    "flag": 2
+                },
+                {
+                    "times": [0.1,0.1,0.1,0.1],
+                    "flag": 4
+                },
+                {
+                    "times": [0.1,0.1,0.2],
+                    "flag": 2
+                }
+            ],
+            "movement": 5,
+            "mobility_type": 1,
+            "attack_type": 1,
+            "hp": 10,
+            "str": 6,
+            "dex": 3,
+            "int": 1,
+            "spr": 2
+        },
+        {
+            "name": "ROGUE",
+            "sprite_path": "./assets/unit_rogue.png",
+            "grid_size_x": 4,
+            "grid_size_y": 3,
+            "cell_size_x": 31,
+            "cell_size_y": 31,
+            "offset_x": -6,
+            "offset_y": -13,
+            "anim_desc": [
+                {
+                    "times": [0.2,0.2,0.2],
+                    "flag": 2
+                },
+                {
+                    "times": [0.1,0.1,0.1,0.1],
+                    "flag": 4
+                },
+                {
+                    "times": [0.1,0.1,0.2],
+                    "flag": 2
+                }
+            ],
+            "movement": 6,
+            "mobility_type": 2,
+            "attack_type": 2,
+            "hp": 8,
+            "str": 5,
+            "dex": 5,
+            "int": 3,
+            "spr": 2
+        },
+        {
+            "name": "MAGE",
+            "sprite_path": "./assets/unit_mage.png",
+            "grid_size_x": 4,
+            "grid_size_y": 3,
+            "cell_size_x": 31,
+            "cell_size_y": 31,
+            "offset_x": -6,
+            "offset_y": -13,
+            "anim_desc": [
+                {
+                    "times": [0.2,0.2,0.2],
+                    "flag": 2
+                },
+                {
+                    "times": [0.1,0.1,0.1,0.1],
+                    "flag": 4
+                },
+                {
+                    "times": [0.1,0.1,0.1],
+                    "flag": 2
+                }
+            ],
+            "movement": 4,
+            "mobility_type": 4,
+            "attack_type": 10,
+            "hp": 6,
+            "str": 1,
+            "dex": 2,
+            "int": 9,
+            "spr": 3
+        }
+    ]
+}
