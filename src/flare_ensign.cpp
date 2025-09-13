@@ -1,3 +1,28 @@
+/******************************************************************************
+MIT License
+
+Copyright (c) 2025 profile_2
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+******************************************************************************/
+
 #define OLC_PGE_APPLICATION
 #define USE_CUBIC_LUT_3_0
 #include "OneLoneCoder/olcPixelGameEngine.h"
@@ -9,17 +34,11 @@
 #include "units.h"
 #include "hud.h"
 
-/*
-TODO:
-stats
-*/
-
 #define SCREEN_W    30*16
 #define SCREEN_H    15*16
 #define PIXEL_S     3
 #define CELL_S      16
 #define CELL_VFS    {16.0,16.0}
-#define C_WHITE_75  {255,255,255,75}
 
 class ENGINE : public olc::PixelGameEngine{
 private:
@@ -73,7 +92,7 @@ private:
     const int nGridW = 30;
     const int nGridH = 30;
 
-    const int nTilemapW = 31;
+    const int nTilemapW = 28;//31
     // const int nTilemapH = 32;
 
     const float fKeyRepDelay = 0.15;
@@ -189,7 +208,7 @@ protected:
     }
 
     bool OnUserCreate(){
-        sprTilemap = new olc::Sprite("./assets/tileset_fe1.png");
+        sprTilemap = new olc::Sprite("./assets/tileset.png");
         dclTilemap = new olc::Decal(sprTilemap);
         sprArrowmap = new olc::Sprite("./assets/arrow.png");
         dclArrowmap = new olc::Decal(sprArrowmap);
@@ -213,8 +232,8 @@ protected:
                                                                                         sAnimDesc({0.15,0.15,0.15},ANIM_SINGLE|ANIM_DISABLE_IF_COMPLETE)});
         animSpark->Enable(false);
         
-        std::vector<int> viTileValues = p2util::ValuesFromCSV("./assets/tilemap_1.csv");
-        std::vector<int> viTileTypes = p2util::ValuesFromCSV("./assets/tileset_fe1.csv");
+        std::vector<int> viTileValues = p2util::ValuesFromCSV("./assets/map_1.csv");
+        std::vector<int> viTileTypes = p2util::ValuesFromCSV("./assets/tileset_types.csv");
 
         hudCombatWinL = new cCombatInfoWin(olc::vf2d(ScreenWidth()/2-138,ScreenHeight()-26), 0);
         hudCombatWinR = new cCombatInfoWin(olc::vf2d(ScreenWidth()/2,ScreenHeight()-26), 0);
@@ -719,7 +738,7 @@ protected:
                 DrawPartialDecal(pos, CELL_VFS, dclTilemap, (vCells[index]->tile), CELL_VFS);
                 
                 if(vCells[index]->bAvailablePath && vCells[index] != originCell){
-                    DrawPartialDecal(pos, CELL_VFS, dclTilemap, {0.0,0.0}, CELL_VFS, C_WHITE_75);
+                    DrawPartialDecal(pos, CELL_VFS, dclTilemap, {16.0,16.0}, CELL_VFS, olc::Pixel(255,64,64,128));
                 }
                 
                 if(vCells[index]->nPath != -1){

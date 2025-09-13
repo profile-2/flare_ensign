@@ -35,12 +35,13 @@ void DrawHudWin(olc::PixelGameEngine& pge, olc::Decal* decal, olc::vf2d pos, con
     pge.DrawPartialDecal(pos+olc::vf2d(size.x*middle_width+leftMargin,size.y*middle_height+topMargin), decal, {leftMargin+middle_width,bottomMargin+middle_height}, {rightMargin,bottomMargin}, olc::vf2d(1,1), color);
 }
 
+// simplified version to use with window_frame_blue.png
 void DrawHudWin(olc::PixelGameEngine& pge, olc::Decal* decal, olc::vf2d pos, const olc::vf2d& size, const olc::vi2d& anchor = olc::vi2d(), const olc::Pixel color = olc::WHITE){
     DrawHudWin(pge, decal, pos, size, anchor,{26,26}, 5, 5, 5, 5, color);
 }
 
 struct sFont{
-    std::string map;
+    std::string map; // List of characters in the font tileset in the order they appear
     olc::vi2d grid_size;
     olc::vi2d cell_size;
 };

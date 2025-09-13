@@ -15,12 +15,12 @@ enum enumFlag{  ANIM_NONE        = 0,
                 //FLAG7       = 128
                 }; 
 
-struct sAnimDesc{
-    std::vector<float> times;
-    UCHAR flag;
+struct sAnimDesc{               // animation description
+    std::vector<float> times;   // time in seconds of each frame of animation
+    UCHAR flag;                 // use enumFlag
     sAnimDesc(std::vector<float> t, UCHAR f = ANIM_SWING): times(t), flag(f){};
 
-    explicit sAnimDesc(const nlohmann::json& data) {
+    explicit sAnimDesc(const nlohmann::json& data) {    // required to acquire data from the jobs JSON
         times = data.at("times").get<std::vector<float>>();
         flag = data.at("flag").get<int>();
     }
@@ -29,13 +29,13 @@ struct sAnimDesc{
 
 class cAnim {
 private:
-    olc::Decal* decal;
-    olc::vi2d viGridSize;
+    olc::Decal* decal;      // the decal organized in rows, each row a series of frames of animation
+    olc::vi2d viGridSize;   // of the animation tile set
     olc::vf2d vfCellSize;
     olc::vf2d vfDclOffset;
     std::vector<sAnimDesc> vaRowDesc;
     int nCurrFrame;
-    int nCurrRow;
+    int nCurrRow;           
     float fCurrTime;
     int nFacing;
     bool bEnabled;
@@ -70,6 +70,7 @@ public:
         fCurrTime = 0.0f;
     }
 
+    // for decals with a single row of animation
     cAnim(olc::Decal* DECAL, int nFRAMES, const olc::vf2d& vfCELLSIZE, const olc::vf2d& vfOFFSET, const sAnimDesc& adDESC, int nFACING = 1, 
         bool bENABLE = true)
         : decal(DECAL), vfCellSize(vfCELLSIZE), vfDclOffset(vfOFFSET), nFacing(nFACING), bEnabled(bENABLE) {
@@ -158,7 +159,7 @@ public:
         decal = Decal;
     }
     
-    bool SetRow(int nRow){
+    bool SetRow(int nRow){ // change animation
         if(nRow >= 0 && nRow < viGridSize.y && !vaRowDesc.empty()){
             nCurrRow = nRow;
             nCurrFrame = 0;

@@ -208,7 +208,7 @@ public:
     }
 };
 
-struct sjJob {
+struct sjJob { // struct to contain the data from the jobs JSON
     std::string name;
     std::string sprite_path;
     int grid_size_x;
@@ -293,7 +293,7 @@ int ParseJobsJSON(const std::string& sFile, std::vector<cJob*>& vJobs,
     return vJobs.size();
 }
 
-struct sjUnit {
+struct sjUnit { // struct to contain the data from units JSON
     std::string name;
     std::string job;
     int level;

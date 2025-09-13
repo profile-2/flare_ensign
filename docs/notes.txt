@@ -1,6 +1,0 @@
-
-https://www.youtube.com/watch?v=9_aJGUTePYo
-
-vi2d.mag2() = x*x + y*y => si las celdas son vecinas mag2 = 1, si hay una de por medio mag2 = 4
-
-
