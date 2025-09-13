@@ -2,13 +2,13 @@
     "jobs": [
         {
             "name": "FIGHTER",
-            "sprite_path": "./assets/unit_fighter.png",
+            "sprite_path": "./assets/unit_fighter_b.png",
             "grid_size_x": 4,
             "grid_size_y": 3,
-            "cell_size_x": 31,
-            "cell_size_y": 31,
-            "offset_x": -6,
-            "offset_y": -13,
+            "cell_size_x": 48,
+            "cell_size_y": 32,
+            "offset_x": -16,
+            "offset_y": -16,
             "anim_desc": [
                 {
                     "times": [0.2,0.2,0.2],
@@ -34,13 +34,13 @@
         },
         {
             "name": "ROGUE",
-            "sprite_path": "./assets/unit_rogue.png",
+            "sprite_path": "./assets/unit_rogue_b.png",
             "grid_size_x": 4,
             "grid_size_y": 3,
-            "cell_size_x": 31,
-            "cell_size_y": 31,
-            "offset_x": -6,
-            "offset_y": -13,
+            "cell_size_x": 48,
+            "cell_size_y": 32,
+            "offset_x": -16,
+            "offset_y": -16,
             "anim_desc": [
                 {
                     "times": [0.2,0.2,0.2],
@@ -66,13 +66,13 @@
         },
         {
             "name": "MAGE",
-            "sprite_path": "./assets/unit_mage.png",
+            "sprite_path": "./assets/unit_mage_b.png",
             "grid_size_x": 4,
             "grid_size_y": 3,
-            "cell_size_x": 31,
-            "cell_size_y": 31,
-            "offset_x": -6,
-            "offset_y": -13,
+            "cell_size_x": 48,
+            "cell_size_y": 32,
+            "offset_x": -16,
+            "offset_y": -16,
             "anim_desc": [
                 {
                     "times": [0.2,0.2,0.2],

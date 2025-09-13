@@ -1,4 +1,4 @@
-Tile graphics by Shade
+Tile and unit graphics by Shade
 https://merchant-shade.itch.io/
 https://merchant-shade.itch.io/16x16-mini-world-sprites
 
@@ -6,4 +6,4 @@ HUD graphics by BDragon1727
 https://bdragon1727.itch.io/
 https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar
 
-All other graphic assets were produced by me.
+All other graphic assets by me (profile_2) distributed under MIT Licence.
